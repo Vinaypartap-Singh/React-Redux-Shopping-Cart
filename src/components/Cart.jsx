@@ -11,7 +11,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="card-wrapper">
+    <div>
       <h1 style={{ textAlign: "center" }}>Your Cart</h1>
       {cartItems.map((data) => (
         <CartCard data={data} key={data.id} />

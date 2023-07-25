@@ -20,7 +20,15 @@ export default function CartCard({ data }) {
     dispatch(decreaseQuantity(id));
   };
   return (
-    <div className="card">
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        margin: "20px",
+        alignItems: "center",
+      }}
+    >
       <img src={data.thumbnail} alt="Product image" style={{ width: "100%" }} />
       <h5>Name: {data.title}</h5>
       <p>Price: ${data.price}</p>
@@ -36,7 +44,11 @@ export default function CartCard({ data }) {
         <p>Quantity {data.quantity} </p>
         <button onClick={() => qtyInc(data.id)}>+</button>
       </div>
-      <button className="buttonAdd" onClick={() => addCart(data.id)}>
+      <button
+        className="buttonAdd"
+        style={{ width: "100%", marginTop: "20px" }}
+        onClick={() => addCart(data.id)}
+      >
         Remove
       </button>
     </div>

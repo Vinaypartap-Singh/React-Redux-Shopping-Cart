@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "../components/Card";
+import { fetchProducts } from "../store/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { data: products, status } = useSelector((state) => state.product);
+  const product = products.products;
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const api = await fetch("https://dummyjson.com/products");
-        const data = await api.json();
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-    fetchData();
-  }, []);
+  if (status === "loading") {
+    return <div>Loading Data</div>;
+  }
 
   return (
     <div
       className="card-wrapper"
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
-      {products.map((data) => {
+      {product?.map((data) => {
         return <Card key={data.id} data={data} />;
       })}
     </div>
