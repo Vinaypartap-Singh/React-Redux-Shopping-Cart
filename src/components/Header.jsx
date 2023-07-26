@@ -1,17 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const cartLength = useSelector((state) => state.cart.cart);
+  const navigate = useNavigate();
   const navLinks = [
     {
       name: "Home",
       link: "/",
-    },
-    {
-      name: "Cart",
-      link: "/cart",
     },
     {
       name: "Products",
@@ -38,6 +35,9 @@ export default function Header() {
                 </li>
               );
             })}
+            <button onClick={() => navigate("/cart")}>
+              Cart {cartLength.length}
+            </button>
           </ul>
         </nav>
       </header>

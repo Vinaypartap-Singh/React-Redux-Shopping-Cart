@@ -8,8 +8,6 @@ export default function Home() {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.product);
   const product = products.products;
-  const catData = useSelector((state) => state.category);
-  const catStatus = useSelector((state) => state.category);
 
   // TODO: Create A New Page For Category Filter
   // GET Data From Category Redux Code Written Below
@@ -20,7 +18,6 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-    dispatch(categoryProduct("groceries"));
   }, [dispatch]);
 
   if (status === "loading") {
