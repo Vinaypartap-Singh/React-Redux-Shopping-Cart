@@ -31,6 +31,17 @@ export default function Products() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch("https://dummyjson.com/products?limit=100")
+      .then((res) => res.json())
+      .then((data) => {
+        setFIlteredItems(data.products);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   const updateCategory = (category) => {
     const fetProducts = fetch(
       `https://dummyjson.com/products/category/${category}`
