@@ -2,13 +2,25 @@ import React, { useEffect } from "react";
 import Card from "../components/Card";
 import { fetchProducts } from "../store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { categoryProduct } from "../store/categorySlice";
 
 export default function Home() {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.product);
   const product = products.products;
+  const catData = useSelector((state) => state.category);
+  const catStatus = useSelector((state) => state.category);
+
+  // TODO: Create A New Page For Category Filter
+  // GET Data From Category Redux Code Written Below
+  // console.log(catData);
+  // console.log(catData.catStatus);
+  // console.log(catData.data.products);
+  // END HERE
+
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(categoryProduct("groceries"));
   }, [dispatch]);
 
   if (status === "loading") {
